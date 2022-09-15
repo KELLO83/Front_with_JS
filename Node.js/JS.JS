@@ -1,5 +1,6 @@
-let data=prompt("test");
+let data="ÇÑ±Û"
 
 console.log(data);
+
 
 
