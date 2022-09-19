@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solution</title>
+</head>
+<body>
+    <!-- <span> inline elem <div> block level elem-->
+    <div><span id="order">1번쨰참가자</span></div>
+    <div><span id='word'>제시어:</span></div>
+    <input class='input_',tpye="text">
+    <button>입력</button>
+    <script>
+        "use strict";
+        let join_user=parseInt(prompt("몇 명이 참가나요?"));
+        let word;
+        let user_word;
+        const $input=document.querySelector('input');
+        const $button=document.querySelector('button');
+        const $word=document.querySelector('#word');//id선택자
+        const oninput=(event)=>{
+            console.log('글자입력',event.target.value);
+            user_word=event.target.value;
+        }
+        const onClickbutton=()=>{
+            if(!word)/*word는 undefined이지만if문에서는 undefined==false이므로 
+        undefined가 아닌 false로 설정을해야 정상작동*/
+            {
+                word=user_word;
+                $word.textContent=word;
+            
+            }
+            else{
+
+            }
+        };
+
+        $input.addEventListener('input',oninput);
+        $button.addEventListener('click',onClickbutton);
+        
+      
+
+
+    </script>
+</body>
+</html>
