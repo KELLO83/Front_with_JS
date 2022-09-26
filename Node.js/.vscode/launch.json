@@ -6,22 +6,13 @@
     "configurations": [
         {
         "name": "Node_Debuger",
-        "program": "${workspaceFolder}\\${fileBasenameNoExtension}.js",
+        "program": "${file}",
         "request": "launch",
         "skipFiles": [
             "<node_internals>/**"
         ],
         "type": "node",
         },
-     {
-        "name": "경로지정 디버깅",
-        "program": "${workspaceFolder}/test.js",
-        "request": "launch",
-        "skipFiles": [
-            "<node_internals>/**"
-        ],
-        "type": "node"
-     }   
     ]
 
 }
