@@ -1,0 +1,181 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{box-sizing:border-box}
+        #result  {width:180px;height:50px;margin:5px;text-align: right;}
+        #operator {width:50px;height:50px;margin:5px;text-align: center;}
+        button {width: 50px;height: 50px;margin: 5px;}
+    </style>
+</head>
+<body>
+    <input readonly id="operator"> <!-- 연산자 input-->
+    <input readonly type="number" id="result"> <!-- numnber input-->
+    <div class="first"> <!-- class=row 랑 동일하다-->
+        <button id="num-7">7</button>
+        <button id="num-8">8</button>
+        <button id="num-9">9</button>
+        <button id="plus">+</button>
+    </div>
+    <div class="seoncd">
+        <button id="num-4">4</button>
+        <button id="num-5">5</button>
+        <button id="num-6">6</button>
+        <button id="minus">-</button>
+    </div>
+    <div class="thid">
+        <button id="num-1">1</button>
+        <button id="num-2">2</button>
+        <button id="num-3">3</button>
+        <button id="divide">/</button>
+    </div>
+    <div class="last">
+        <button id="init">C</button>
+        <button id="num-0">0</button>
+        <button id="assign">=</button>
+        <button id="multiple">*</button>
+    </div>
+    <script>
+        let numone=''; //숫자형이 아닌 문자열로 input받을것이다
+        let operator='';
+        let numtwo='';
+        let buffer=0
+
+        const $operator=document.querySelector('#operator')//id=operator선택
+        const $result=document.querySelector('#result') //id=result
+        const onclickNumber=(number)=>(event)=>{
+            if(operator){
+                if(!numtwo){
+                    $result.value='';
+                }
+                numtwo+=number;
+                if(buffer==0){
+                    buffer=numone;
+                }
+                switch(operator){
+                    case '+':
+                    buffer=parseInt(buffer)+parseInt(numtwo);
+                        break;
+                    case '-':
+                    buffer=buffer-numtwo;
+                        break;
+                    case "*":
+                    buffer=buffer*numtwo;
+                        break;
+                    case "/":
+                    buffer=buffer/numtwo;
+                        break;
+                    default:
+                        break;
+                }
+            
+                console.log(buffer);
+            }else{
+                numone+=number;
+            }
+            numtwo='';
+            $result.value+=number;
+        }
+
+        const onclickOperator=(op)=>()=>{ //op를 매개변수로 받는다 고차함수 사용
+            if(numone){
+                operator=op;
+                $operator.value=op;
+            }else{
+                alert("숫자를 먼저 입력하세요");
+            }
+            operator.value+=event.target.textContet;
+        };
+
+        document.querySelector('#num-0').addEventListener('click',()=>{ 
+            if(operator){  //고차함수를 사용하여 코드재활용
+                numtwo+='0';
+            }else{
+                numone+='0';
+            }
+            $result.value+='0';
+        });
+        document.querySelector('#num-1').addEventListener('click',()=>{
+            if(operator){
+                numtwo+='1';
+            }else{
+                numone+='1';
+            }
+            $result.value+='1';
+        });
+        document.querySelector('#num-2').addEventListener('click',onclickNumber(2));
+        document.querySelector('#num-3').addEventListener('click',onclickNumber(3));
+        document.querySelector('#num-4').addEventListener('click',onclickNumber(4));
+        document.querySelector('#num-5').addEventListener('click',onclickNumber(5));
+        document.querySelector('#num-6').addEventListener('click',onclickNumber(6));
+        document.querySelector('#num-7').addEventListener('click',onclickNumber(7));
+        document.querySelector('#num-8').addEventListener('click',onclickNumber(8));
+        document.querySelector('#num-9').addEventListener('click',onclickNumber(9));
+        document.querySelector('#plus').addEventListener('click',onclickOperator('+'));
+        document.querySelector('#minus').addEventListener('click',onclickOperator('-'));
+        document.querySelector('#divide').addEventListener('click',onclickOperator('/'));
+        document.querySelector('#multiple').addEventListener('click',onclickOperator('*'));
+        document.querySelector('#assign').addEventListener('click',()=>{
+            $result.value=buffer;
+            return buffer;
+            // if(numtwo){
+            //     switch(operator){
+            //         case '+':
+            //         $result.value=parseInt(numone)+parseInt(numtwo);
+            //             break;
+            //         case '-':
+            //         $result.value=parseInt(numone)-parseInt(numtwo);
+            //             break;
+            //         case "*":
+            //         $result.value=parseInt(numone)*parseInt(numtwo);
+            //             break;
+            //         case "/":
+            //         $result.value=parseInt(numone)/parent(numtwo);
+            //             break;
+            //         default:
+            //             break;
+            //     }
+            // }
+        });
+        document.querySelector('#init').addEventListener('click',()=>{
+            numone='';
+            numtwo='';
+            operator='';
+            $operator.value='';
+            $result.value='';
+        });
+
+        // const func=(number)=>{
+        //     // number=0
+        //     return (number)=>{
+        //         number+=1;
+        //         return (number)=>{
+        //             number+=2;
+        //         };
+        //     }
+        // }
+        
+        // let d=func(3);
+        // let dd=func((3));
+        // console.log(d);
+        // console.log(dd);r
+        // const temp_numeber=(event)=>{
+        //         if(!operator){
+        //             numone+=event.key.target.textContet;
+        //             $result.value+=event.target.textContet;
+
+        //         }
+        //         if(!numtwo){
+        //             $result.value='';
+        //         }0
+        //         numtwo+=event.target.textContet;
+        //         $result+=event.target.textContet;
+        // }
+    </script>
+
+    
+</body>
+</html>
