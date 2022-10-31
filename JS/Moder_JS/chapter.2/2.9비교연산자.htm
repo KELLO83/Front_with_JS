@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //boolean형 반환
+        console.log( 2>1)
+        console.log( "2">1) //비교연산자에서 문자열의 숫자형태로 자동형변환
+
+        //문자열 비교
+        console.log('Z'>'A') //사전순으로 비교한다 Z가 사전의뒤쪽
+        
+        //흥미로운 상황
+        let a=0
+        let b="0"
+        console.log(Boolean(a)) // false
+        console.log(Boolean(b)) //true 문자열이 존재 0
+        console.log(a==b) //일치연산자에서 b를 숫자형으로 형변환
+
+        //일치연산자  == 0과 false를 구별하지 못합니다
+
+        console.log(0==false) //true
+        console.log(''==false)  //true
+        
+        //null undefined 비교
+        console.log(null==undefined) //true
+        console.log(null===undefined) //false
+
+        //nul 0 비교
+        console.log(null>0) //false
+        console.log(null==0) //false 일치연사는 형변환을 하지않는다
+        console.log(null>=0) //true null 숫자형변환 0
+        
+        //비교가 불가능한 undefined ->전부 false
+
+        console.log(undefined>0) //undefined 숫자형변환 Nan
+        console.log(undefined==0)
+        console.log(undefined>=0) //undefined null 이 같다 그이외의값들은 같지않다
+        //null 은 오로지 undefined 와 같다 null==undefined
+    </script>
+    
+</body>
+</html>

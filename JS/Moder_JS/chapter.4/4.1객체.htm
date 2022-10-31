@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>//객체형은 원시형과 달리 다양한데이터를 담을수있다
+        let user=new Object(); //객체생성자 문법
+        user.name="dsban"
+        user.age=80
+        user.test=true
+        let user_first={
+            name:"kello",
+            age:80,
+
+        }; //객체 리터럴 문법
+        console.log(user_first.name)
+        console.log(user_first.age)
+        console.log(user.name)
+        console.log(user.age)
+
+        console.log(user)
+        delete user.test//user의 속성  key값 test의 value를 전부삭제한다
+        console.log(user)
+
+        user["user like birds"]=true //띄워쓰기가있는 key값은 대괄호로 추가를해야한다
+        console.log(user)
+        console.log(user["user like birds"])//띄워쓰기가 있는 key값은 대괄호로 value를 출력을해야한다
+        delete user["user like birds"] //띄워쓰기가 있는 key값은 대괄호로 삭제
+        console.log(user)
+
+        //계산된 프로퍼티
+
+        let fruit=prompt("어떤 과일 구매?","orage") //fruit에 사용자가 입력한 이름을 저장
+        let data=prompt("문자열 입력","string")
+        let bag={
+            [fruit]:5, //객체 리터럴안에 fruit에서 프로퍼티 이름을 동적으로 받아온다
+
+
+        }
+        bag[data]=10; //대괄호도 추가가능 data의 프로퍼티이름을 가져온후 bag에 value값을 10을준다
+        console.log(bag)
+        
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

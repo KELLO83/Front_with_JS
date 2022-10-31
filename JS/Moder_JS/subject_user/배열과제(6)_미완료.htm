@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function calculator(){
+            this.calc=function(data){
+                let convert_list=data.split('');
+                let op=['+','-']
+                convert_list.filter((value)=>{
+                    let slect_op=op.forEach((item)=>{
+                        if (item==value){
+                            return true;
+                        }
+                        else return false;
+                    })
+                    return slect_op;
+                })
+        }}
+        let calc=new calculator;
+        console.log(typeof(calculator))
+        console.log(calculator.calc)
+    </script>
+    
+</body>
+</html>

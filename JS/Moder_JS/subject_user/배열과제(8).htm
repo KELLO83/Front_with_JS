@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>//나이를기준으로 정렬하기
+        let john = { name: "John", age: 25 };
+        let pete = { name: "Pete", age: 30 };
+        let mary = { name: "Mary", age: 28 };
+        let arr = [ pete, john, mary ];
+        let data=arr.sort((a,b)=>{
+            if(a.age>b.age){
+                return 1;
+            }
+            else if (a.age==b.age){
+                return 0;
+            }
+            else{
+                return -1;
+            }
+        });
+            
+        console.log(data)
+
+    </script>
+
+    
+</body>
+</html>

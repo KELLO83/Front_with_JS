@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //원시형의 종류는 문자,숫자,불린,null,undefined,bigint,symbol 7가지
+        //배열의 반복문
+
+        let arr=["사과","오렌지","배"];
+        //첫번째 방법 
+        for(let i=0;i<arr.length;i++){
+            console.log(arr[i])
+        }
+        console.log("\n")
+        //두번째 방법 for of 요소의 인덱스는 얻을수없고 값만얻을수있다
+        for (let i of arr){
+            console.log(i)
+        }
+
+        //세번째 방법 for each 배열에서만 지원하는 순회방법 ->자주사용 arr.foreach(item=>{함수본체})
+        arr.forEach(function(item,index,array){ //arr.foreach(function(item,index,array))
+            console.log(item,index,array)
+        });
+
+        //배열탐색하기 배열내에서 무언가를 찾고싶을때사용하는 메서드
+        // array.indexOf(value) -> 성공시 해당원소의 idx번호 실패시 -1반환
+        let data=[1,2,3];
+
+        console.log(data.indexOf(2)); //2가저장된 idx번호 1
+        console.log(data.indexOf(100)); //찾지못함 -1반환
+
+        // array.includes(value) -> 배열안에 원소가 존재하는지 ? true false
+        
+        console.log(data.includes(2)); //true
+        console.log(data.includes(false)); //false
+
+        /* arr.forEach((item,index,arr)=>{})
+        array.indexOf(value) -> 배열에서 value를만족하는 index번호를 반환한다 실패시 -1
+        array.includes(value) -> 배열에서 value값이 존재시 true 아닐시 false
+        */
+
+
+
+
+    </script>
+    
+</body>
+</html>

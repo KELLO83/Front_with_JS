@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let boolean=true;
+        //alert(boolean) //alter ->매개변수로 문자열을받으므로 자동으로 문자형으로 형변환
+
+        let n1="3"
+        let n2=5
+        console.log(n1+n2) //수학과 관련된 함수와 표현식에서 자동으로 발생
+        //n1이 숫자이외의 글자가 들어가있을시 NaN으로 반환된다
+        let n3="love"
+        console.log(n3+n2) //NAN
+        /*
+        undefinded->Nan
+        null->0
+        true and false -> 1 , 0
+        stinrg -> 문자열의 처음과 끝 공백제거후 남아있는문자열x ->0
+        아니라면 문자열에서 숫자를 읽는다 숫자가아닌 문자열이라면 NAN
+        */
+
+        // Boolean(value) 
+        console.log(Boolean(1))
+        console.log(Boolean(0))
+        console.log(Boolean("test"))
+        console.log(Boolean(""))
+        // 숫자 0 빈문자열 null undefined Nan 비어있다는 느껴지는값들은 false
+        
+        /* 
+        문자형으로 변환 -> 무언가를 출력할때 주로일어난다
+        String(value) 명시적으로 변환가능
+
+        숫자형으로 변환 -> 수학 관련 연산시 주로 발생
+        Number(value) 명시적 변환가능
+            undefined -> NaN 
+            null -> 0
+            true / false -> 1/0
+            string -> 문자열이비어있다면 0 숫자형태의 문자가아니라면 Nan 
+
+        불린형으로 변환 -> 논리연산시 발생
+        Boolean(value) 명시적 변환가능
+            0 null undefined Nan "" ->flase
+            " " "0" ->공백 문자열0 ->true
+        
+        */
+    </script>
+
+    
+</body>
+</html>

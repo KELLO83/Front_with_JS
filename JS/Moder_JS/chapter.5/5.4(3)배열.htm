@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //split  string convert to arr
+        let user="i love you"
+        let convert_arr=user.split(' ');
+        console.log(convert_arr);
+        convert_arr.forEach((item)=>{
+            console.log(item)
+        })
+
+        //join  convert arr to string
+        let data=[1,2,3];
+        let str_convert=data.join('');
+        console.log(str_convert);
+        
+        //reduce python reduec동일 동작 전의 결과를 지금결과에 더해간다
+
+        let arr_reduece=[1,2,3,4,5]
+
+        let reduce_res=arr_reduece.reduce((sum,current)=>sum+current);
+        console.log(reduce_res);
+
+
+        //Array is Array 로 배열인지 알아내기
+
+        console.log(Array.isArray(arr_reduece)); //true
+
+        //split join reduce Array.isArray
+        /* 
+        split-> str->list
+        join ->list->str
+        */
+
+
+    </script>
+    
+</body>
+</html>

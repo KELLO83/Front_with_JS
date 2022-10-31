@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=[5,3,8,1];
+        function filterRange(arr,a,b){
+            let buffer=[]   
+            arr.forEach((element)=> {   
+                if (element>a && element<b){
+                    buffer.push(element);
+                }
+            });
+            return buffer;
+        }
+        let convert_arr=filterRange(arr,1,9); 
+        console.log(convert_arr);
+
+    </script>
+    
+</body>
+</html>

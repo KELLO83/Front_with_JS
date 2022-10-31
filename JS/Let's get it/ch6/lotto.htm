@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>로또추첨기</title>
+  <style>
+    .ball {
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="result">추첨 결과는? </div>
+<div id="bonus">보너스: </div>
+<script>
+  const candidate = Array(45).fill().map((item, index) => index + 1); // arr.map((item,value,index)=>{}) Array(45) 45칸 emoty할당 .fill() undefine할당 map함수를 돌면서 인덱스번호+1 할당
+  const shuffle = []; //candidate 를 섞어서 저장하는 리스트..
+  while (candidate.length > 0) { //피셔 에이츠셔플 .. 원본배열길이만큼 
+    const random = Math.floor(Math.random() * candidate.length);  // Math.floor(Math.random()*arr.length)  랜던범위 0<=x<=arr.length까지 
+    const spliceArray = candidate.splice(random, 1);  //splice 원본배열변경 범위 random부터 원소1개
+    const value = spliceArray[0];  // 28행코드에서 넣은 원소1개를 value값으로 지정한다
+    shuffle.push(value);  //shuffle에 원소추가..
+  }
+  console.log(shuffle);
+  const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // arr.sort((a,b) {if (a>b) return 1 else if (a==b) return 0 else return -1 })
+  const bonus = shuffle[6]; //섞은배열의 7번째를 보너스공으로 지정한다.
+  console.log(winBalls, bonus);
+  function change($ball,number){ //매개변수 const $ball winballs[i] 
+    if (number>=1 && number<=10){//숫자에따른 $ball.style.backgroundColor 설정....
+      $ball.style.backgroundColor='yellow';
+    }
+    else if (number>=11 && number<=20){
+      $ball.style.backgroundColor='blue';
+    }
+    else if(number>=21 && number<=30){
+      $ball.style.backgroundColor='red';
+    }
+    else if (number>=31 && number<=40){
+      $ball.style.backgroundColor='black'
+    }
+    else{
+      $ball.style.backgroundColor='green';
+    }
+  }
+  const $result = document.querySelector('#result');
+  const drawBall = (number, $parent) => { //공뽑는코드... 인자 숫자 태그 result
+    const $ball = document.createElement('div'); // div태그를 생성하여..
+    $ball.className = 'ball'; //class name ball할당
+    change($ball,number); //chagne호출
+
+    $ball.textContent = number;//공을 화면에 출력하기 직전... 색을바꾸어야한다 cahge를 통한 공색상 판정
+    $parent.append($ball);  //#result하위태그로 div태그를 추가한다
+  };
+
+  let ck=setInterval(()=>{
+    const $ball=document.createElement('div');
+    $ball.className='ball';
+    data=winBalls.shift();
+    $ball.textContent=data;
+    change($ball,data);
+    $result.appendChild($ball);
+    
+  },1000)
+  setTimeout(()=>{
+    clearInterval(ck);
+  },6000);
+
+  const $bonus = document.querySelector('#bonus');
+  setTimeout(() => { //bonus 7초후 출력한다
+    drawBall(bonus, $bonus);
+  }, 7000);
+
+</script>
+</body>

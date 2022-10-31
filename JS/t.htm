@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let strings = ["Hare", "Krishna", "Hare", "Krishna",
+                        "Krishna", "Krishna", "Hare", "Hare", ":-O"
+                        ];
+        //// Hare, Krishna, :-O ck저장하기 중복은 허락하지않는다
+        let ck=function(data){
+            let buffer=[];
+            let ans=["Hare","Krishna",":-O"]
+            let tmp=[]
+            buffer=data.filter((value)=>{
+                for(let i=0;i<3;i++){
+                    if (value==ans[i]){
+                        for(let j=0;j<tmp.length;j++){
+                            if(tmp[j]==value){
+                                return false;
+                            }
+                        }
+                        tmp.push(value);
+                        return true;
+                        
+                    }
+                }
+            })
+            console.log(buffer)
+            
+
+        }
+        ck(strings)
+    
+    </script>
+    
+</body>
+</html>

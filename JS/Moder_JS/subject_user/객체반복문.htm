@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let salaries={
+            john:100,
+            Ann:160,
+            pete:130,
+        };
+
+        let sum=(salaries)=>{
+            let total=0;
+            for (let key in salaries){
+                total+=salaries[key];
+            }
+            return total
+
+        }
+        console.log(sum(salaries));
+
+    </script>
+    
+</body>
+</html>

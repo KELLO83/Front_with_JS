@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //함수는 값을 반환합니다 값을 반환하지않는경우 반환값은 undefined
+        //함수표현식
+
+        let fk=function(){
+            console.log("함수표현식")
+        }; //세미콜론 ;필요 fk라는 변수에 함수를 할당한것이기때문에
+        fk()
+        //콜백함수 함수를 값처럼 전달하는 예시
+
+        function ask(question,yes,no){
+            if (confirm(question)) yes()
+            else no();
+        }
+        function showok(){
+            console.log("확인")
+        }
+        function showcan(){
+            console.log("취소")
+        }
+        ask("확인/취소",showok,showcan) //ask의 인수 showok showcan은 콜백함수
+        //함수를 함수의 인수로 전달하고 필요하다면 인수로 전달한 그함수를 나중에호출
+
+        function ask_expression(question,yes,no){
+            if (confirm(question)) yes()
+            else no()
+        }
+        ask("표현식 확인/취소",function(){console.log("표현식 확인")},
+        function(){console.log("표현식 취소")}) //두번째 세번째 함수를 익명함수라고 부른다 함수표현식
+        //익명함수는 변수에 할당된것이 아니기떄문에 ask바깥에서 접근불가
+        
+
+        /* 
+        콜백함수란?
+        콜백함수는 간단하게 다른 함수에 매개변수로 넘겨준 함수를 말한다.
+        매개변수로 넘겨받은 함수는 일단 넘겨받고, 때가 되면 나중에 호출(called back)한다는 것이 콜백함수의 개념이다.
+        */
+    </script>
+    
+</body>
+</html>

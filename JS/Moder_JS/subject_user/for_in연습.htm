@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data={
+            name_:'kello',
+            age:30,
+            phone_number:1234,
+            "test_name":"testing name",
+
+        }
+        // console.log(name_ in data)// 오류발생
+        console.log("name_" in data); //data객체안에 name이라는 key값이 있나요?
+        
+        //객체의 요소 순회하면서 key value 출력하기
+
+        for (let i in data){
+            console.log(i,data[i])
+        }
+    </script>
+    
+</body>
+</html>

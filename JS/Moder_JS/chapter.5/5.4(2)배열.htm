@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let user=[ //객체
+            {id:1,name:"kello"},
+            {id:2,name:"pete"},
+            {id:3,name:"world"},
+        ];
+
+        //find함수 arr.find(function(value,index,array)) value를만족하는 첫번쨰요소의 값을 반환한다
+        let res=user.find((item)=>item.id==1) //arr.find(fn) true일시 해당요소를 반환하고 멈춤 없으면 undefined반환
+        console.log(res)
+        let res_value=user.find((item,index,array)=>{if( item.name == "pete") return true})//id:2가 나와야하지만 1과pete가 출력되고있다 ..?
+        console.log(res_value);//????질문 대기..
+
+        let testing_number=[1,3,5,7,9];
+        console.log(testing_number.find((value)=>value>=3))
+
+
+        //findindex arr.findindex((value,index,array)=>) value를만족하는 arr의 인덱스번호를 return한다
+        let data=[5,3,1,2]
+        console.log(data.findIndex((value)=>value==3)); //value가 3값을가지는 data의 index번호 1을 반환한다
+    
+        //map함수 map은 배열요소 전체를 대상으로 함수를 호출하고 arr.map((item,index,array)=>)
+        //함수호출결과를 배열로 반환해준다 원본배열 변형x
+
+        let lenghts=["kello","name","test"].map(item=>item.length)
+        console.log(lenghts) //5 4 4 각 문자열을 받은후 문자열의 길이를 반환하여 length에저장한다
+
+        //fiter함수 python filer동일효과  arr.filter(function(value,indext,source))  source=순회하는대상
+        //조건부합값들을 배열형태로 반환
+        let arr_filter=[5,3,8,1];
+        let convert_arr_filter=arr_filter.filter(value=>value>5);
+        console.log(convert_arr_filter); //8출력
+
+
+        //sort함수 배열의 요소를 재정렬
+        let arr=[1,2,15].sort(); //1 15 2로 정렬
+        console.log(arr);//요소는 문자열로 취급되어 정렬되기떄문에
+        // "2">"15" 보다 사전순서 우선이므로 뒤쪽으로 정렬
+
+        let compare=(a,b)=>{ //오름차순 정렬 함수를 인수로 주어야한다
+            if(a>b) return 1; //숫자형으로 비교한다
+            if(a==b) return 0;
+            if (a<b) return -1;
+        }
+        let sort_number=[1,2,15].sort(compare);
+        console.log(sort_number);
+
+        let compare_optimization=[1,2,15].sort((a,b)=>a-b); //오름차순 숫자를 정려할떄 사용하는 알고리즘 외워두자.. 유용할듯..
+        console.log(compare_optimization);
+
+
+        let reverse_sort=[3,5,7,1,9].reverse();
+        console.log(reverse_sort); // 요소들의 순서를 뒤집어준다 내림차순정렬x
+
+        /* sort reverse splice 기존배열을 변형시킨다 원본데이타 변경됨*/
+
+        /*
+        foreach ->arr.forEach((value,index,arr)=>)
+        find  ->arr.find((value,index,arr)=>)
+        findindex  -> arr.findindex((value,index,arr)=>)
+        filter  -> arr.filter((value,index,source)=>)
+        map     -> arr.map((value,index,arr)=>)
+        sort  -> arr.sort(func=>)
+        revers arr.reverse()
+        */ 
+    </script>
+    
+</body>
+</html>

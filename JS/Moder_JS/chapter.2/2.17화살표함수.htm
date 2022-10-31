@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //화살표함수
+
+        let sum=(a,b)=> a+b; //인수 a,b를 받고
+        //표현식 a+b를 평가하고 그 결과를 반환합니다
+        console.log(sum(3,5))
+        
+
+        //매개변수 3개를이용한 화살표함수와 콜백을 이용한 구현
+        let res=(question,yes,no)=>{
+            if (confirm(question)) yes()
+            else no()
+        }
+
+        res("동의?",function(){console.log("동의")},function(){console.log("취소")})
+
+    </script>
+    
+</body>
+</html>

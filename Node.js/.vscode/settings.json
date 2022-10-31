@@ -1,0 +1,37 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.linting.enabled": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "python.autoComplete.addbrackets":true,
+    "editor.bracketPairColorization.enabled": true,// 괄호쌍 색맞추기
+    "editor.tokenColorCustomizations": {
+        "comments": "#D4F4FA",
+        "variables": "#f00"
+    },
+    "grunt.autoDetect": "on",
+    "C_Cpp.default.systemIncludePath": [
+        "C:\\\\MinGW\\\\bin\\\\g++.exe"
+    ],
+    "code-runner.runInTerminal": true,
+    "code-runner.showRunCommandInEditorContextMenu": false,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "git.autofetch": true,
+    "liveshare.anonymousGuestApproval": "accept",
+    "workbench.editor.untitled.hint": "hidden",
+    "python.analysis.autoImportCompletions": false,
+    "tabnine.experimentalAutoImports": true,
+    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-18.0.1.1",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.CustomBrowser": "chrome",
+    "files.autoGuessEncoding": true,
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+}
+
+
+// comments=#00e1ffa9
+// comments=#16bda7
+// comments=#a59680
+// comments=#D4F4FA

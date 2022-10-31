@@ -1,0 +1,100 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>숫자야구</title>
+</head>
+<body>
+<form id="form">
+  <input type="text" id="input">
+  <button>확인</button>
+  <span>사용자 입력:</span>
+  <span id="user_input">입력대기</span>
+  <span>정답:</span>
+  <span id="ans">Answer</span>
+</form>
+<div id="logs"></div>
+<script>//랜덤한 숫자 4개를 뽑느다 ->단 중복을제외한
+  const $input = document.querySelector('#input');
+  const $form = document.querySelector('#form');
+  const $logs = document.querySelector('#logs');
+  const $ans=document.querySelector('#ans');
+  const $user=document.querySelector('#user_input');
+  const number=Array(9).fill().map((index,i) => i + 1);
+  let out=0;
+  
+  let answer=new Array();
+  for(let n=1;n<=4;n++){
+    const index=Math.floor(Math.random()*number.length)
+    answer.push(number[index]);//중복되지않은숫자 appned순으로 삽입
+    number.splice(index,1);//index시점부터 요소1개 제거
+  }
+  answer=new Array();
+  answer.push(1,2,3,4);
+  console.log(answer)
+  $ans.textContent=answer.join("");
+  const tries=new Array();
+
+  function checkInput(input){
+    if(input.length!==4){
+        return alert("4자리 숫자를 입력바람"); //return undefined if=>false
+    }
+    if(new Set(input).size!==4){ //set lengt=set.size
+        return alert("중복입력 불가");
+    }
+    if(tries.includes(input)){
+        return alert("이미 시도한값");
+    }
+    return true;
+  }
+
+  $form.addEventListener('submit',(event)=>{
+    event.preventDefault(); //폼태그의 기본동작을 취소한다 submit발생시 브라우갱신->갱신제어
+    const value=$input.value;//사용자입력값을 value할당
+    $user.value=$input.value;
+    $user.textContent=$user.value;
+    $input.value="";
+    if(!checkInput(value)){
+      return;
+    }
+
+    if(answer.join("")===value){//answer join메서드를 사용해 배열의 요소들을 합쳐 문자열반환로반환 그것이 value와 같은가?
+        $logs.textContent="홈런";
+        return;
+    }
+    if(tries.length>=9){ //tries에저장된 숫자4쌍의 집합들의 길이가 9이상일경우
+        const message=document.createTextNode(`패패 정답은 ${answer.join("")}`);
+        $logs.appendChild(message);
+        return;
+    }
+    let strike=0;
+    let ball=0;
+    user_value=Array.from(value);
+    console.log(user_value);
+    i=0;
+    ball_data=0
+    user_list=[];
+    user_value.forEach((element,i) => {
+        index=value.indexOf(answer[i]);
+        if(index>-1){
+          if(index===i){
+            strike+=1;
+          }
+          else{
+            ball+=1;
+          }
+        }
+    });
+    if(strike===0 && ball===0){
+      out+=1;
+      $logs.append(`아웃!! 현재아웃횟수:${out}`,document.createElement("br"));
+      if (out>=3){
+        $logs.append(`3아웃 게임을 종료합니다 정답은 ${answer.join("")}입니다`);
+        return ;
+    }
+  }
+    $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`,document.createElement("br"));
+    tries.push(value); //시도횟수에 사용자입력값을 추가한다
+    });
+</script>
+</body>
+</html>
