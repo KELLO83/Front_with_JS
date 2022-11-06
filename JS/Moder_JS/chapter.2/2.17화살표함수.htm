@@ -23,6 +23,28 @@
 
         res("동의?",function(){console.log("동의")},function(){console.log("취소")})
 
+        
+        const f = () => ({ //객체를 return 합니다 {a:1,b:2} ( {} ) 대괄호로 감싸야한다
+            a: 1,
+            b: 2
+        });
+        console.log(f());
+        //객체를 즉시 반환해야 하는 경우에는 예외적으로 객체임을 명시적으로 알려주기 위해서 ()를 묶어줌으로서 ()안의 값이 객체임을 표기
+        const g=()=>{ //retun true 객체 retunr없음
+            console.log("hello");
+            return true;
+        }
+
+        console.log(g());
+
+        const k=()=>{
+            console.log("not return func");
+        }
+
+        console.log(k()); //return을 받지않았다 undefine반환
+
+
+
     </script>
     
 </body>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+</head>
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어 : 
+    <span id="word"></span></div>
+    <input type="text" text="텍스트" onkeypress="show_enter(event)"> 
+    <!-- onkeyPress 사용자가 키를눌럿을떄  -->
+    <button>입력</button>
+    <script>
+    let number;
+        while(true){  //첫번째 솔루션
+         number = parseInt(prompt('몇 명이 참가하나요?')); //parseInt -> int형 Number-> 단지 숫자형으로 변환
+        if ( number>2 && number<11 && number!=NaN){
+                console.log(number);
+                break;
+            }
+            else{
+                console.log("이상한 문자를 입력함");
+            }
+
+        };
+        function show_enter(e){ //event객체를판별합니다
+            if(e.key=='Enter'){ //e.key=='Enter'라면 onclickButton 실행
+            // 또는 if(e.keyCode==13) 똑같이 enter키를 눌렀을시
+                onClickButton();
+            }
+        }
+        const $id = document.querySelector('#id');
+        const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+
+        let word; //제시어
+        let newWord; //현재 단어
+        //화살표함수 (...args)=>expression ...args를받고 expression평가하여 평가결과를 반환합니다
+        const onClickButton = () => { //화살표함수 매개변수를받지않고 {}판별합니다
+            if(!word){ 
+                data=parseInt(newWord);
+                let check=/[0-9]/; //정규식 문자열에서 0~9를 걸러낸다[0-9] : 숫자
+                if(data!=NaN){
+                    if(check.test(data)){ //정규식.test(검사문자열) => true일시 해당문자열이있음..
+                        alert("숫자를 입력하지마세요");
+                        onInput();
+                    }
+                }
+                word = newWord;
+                $word.textContent = word;
+                const order = Number($order.textContent);
+                if(order+1 > number){
+                    $order.textContent = order;
+                }else{
+                    $order.textContent = order + 1;
+                }
+                $input.value = "";
+                $input.focus();
+            } else{
+                data=parseInt(newWord);
+                let check=/^[0-9]+$/;
+                if(data!=NaN){
+                    if(check.test(data)){
+                        alert("숫자를 입력하지마세요");
+                        onInput();
+                    }
+                }
+                if(word[word.length-1] === newWord[0]){
+                    word = newWord;
+                    $word.textContent = word;
+                    const order = Number($order.textContent);
+                    if(order + 1 > number){
+                        $order.textContent = 1;
+                    } else{
+                        $order.textContent = order + 1;
+                    }
+                } else {
+                    alert('올바르지 않은 단어입니다!')
+                }
+                $input.value="";
+                $input.focus();
+            }
+        }
+        const onInput = (e) => {
+            newWord = e.target.value;
+        }
+        $input.addEventListener('input',onInput); 
+        $button.addEventListener('click',onClickButton);
+        $input.addEventListener('input',show_enter);
+    </script>
+
+</body>
+</html>

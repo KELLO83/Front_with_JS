@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const func = (msg) => //참고로 화살표 함수 문법에 따라 함수의 본문에서 바로 반환되는 값이 있으면 {와 return을 생략할 수 있습니다.
+             () => {
+                console.log(msg);
+            };
+        
+        //python Decorate 
+        const inner_first = func("first");
+        const inner_second=func("second");
+        inner_first();
+        inner_second();
+
+        function greaterThan(n){
+            return m =>(m>n)
+        }
+        let grt=greaterThan(10); //grt는 함수 greaterThan을 객체로받는다
+        console.log(grt(9));
+        console.log(grt(11));
+
+        function noisy(f){ //...args 가변인수
+            return(...args) =>{
+                console.log("calling with",args);
+                let result=f(...args);
+                console.log("called with ",args,"returnd",result);
+                return result;
+            }
+        }
+        noisy(Math.min)(3,2,1);
+
+        function sum(...args){
+            let res=0;
+            console.log(args);
+            for (let i=0;i<args.length;i++){
+                res+=args[i];
+            }
+            return res;
+        }
+
+        let n1=sum(1,2,3);
+        console.log(n1) //console.log(n1())이 아닌이유
+
+    </script>
+
+</body>
+
+</html>
