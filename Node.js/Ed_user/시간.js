@@ -17,4 +17,3 @@ let kk=setInterval(()=>{
 setTimeout(()=>{
     clearInterval(kk);
 },7000) //딱 7초가될떄 종료한다
-

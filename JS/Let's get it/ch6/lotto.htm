@@ -50,13 +50,14 @@
       $ball.style.backgroundColor='green';
     }
   }
+  
   const $result = document.querySelector('#result');
   const drawBall = (number, $parent) => { //공뽑는코드... 인자 숫자 태그 result
     const $ball = document.createElement('div'); // div태그를 생성하여..
     $ball.className = 'ball'; //class name ball할당
     change($ball,number); //chagne호출
 
-    $ball.textContent = number;//공을 화면에 출력하기 직전... 색을바꾸어야한다 cahge를 통한 공색상 판정
+    $ball.textContent = number;//공을 화면에 출력하기 직전... 4을바꾸어야한다 cahge를 통한 공색상 판정
     $parent.append($ball);  //#result하위태그로 div태그를 추가한다
   };
 
@@ -73,6 +74,7 @@
     clearInterval(ck);
   },6000);
 
+  
   const $bonus = document.querySelector('#bonus');
   setTimeout(() => { //bonus 7초후 출력한다
     drawBall(bonus, $bonus);

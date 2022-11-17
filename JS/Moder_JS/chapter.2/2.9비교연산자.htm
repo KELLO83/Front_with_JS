@@ -23,6 +23,13 @@
         console.log(a==b) //일치연산자에서 b를 숫자형으로 형변환
 
         //일치연산자  == 0과 false를 구별하지 못합니다
+        /*
+        undefinded->Nan
+        null->0
+        true and false -> 1 , 0
+        stinrg -> 문자열의 처음과 끝 공백제거후 남아있는문자열x ->0
+        아니라면 문자열에서 숫자를 읽는다 숫자가아닌 문자열이라면 NAN
+        */
 
         console.log(0==false) //true
         console.log(''==false)  //true

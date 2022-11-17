@@ -20,3 +20,12 @@ for( i in user){
 
 
 console.log("name" in user);
+
+console.log(user);
+
+
+delete user.month;
+
+
+console.log(user);
+

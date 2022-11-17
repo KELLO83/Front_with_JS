@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>반응속도</title>
+<style>
+  #screen {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    user-select: none;
+  }
+  #screen.waiting {
+    background-color: aqua;
+  }
+  #screen.ready {
+    background-color: red;
+    color: white;
+  }
+  #screen.now {
+    background-color: greenyellow;
+  }
+</style>
+</head>
+
+<body>
+<div id="screen" class="waiting">클릭해서 시작하세요</div>
+<div id="result"></div>
+<script>
+  const $screen = document.querySelector('#screen');
+  const $result = document.querySelector('#result');
+  const record=new Array();
+
+  $screen.addEventListener('click',()=>{//태그에 해당 클래스가 들어 있는지는 다음 방법으로 알 수 있습니다.
+    if($screen.classList.contains('waiting')){
+        $screen.classList.remove('waiting');
+        $screen.classList.add('ready');
+        $screen.textContent="초록색이 되면 클릭하세요";
+        setTimeout(()=>{
+            startTime = new Date();
+           $screen.classList.remove('ready');
+           $screen.classList.add('now');
+           $screen.textContent="클릭하세요!";
+
+        },Math.floor(Math.random()*1000+1000));// 0<x<=1000 1000<x<=2000
+
+ }
+    else if($screen.classList.contains('ready')){
+
+    }
+    else if($screen.classList.contains('now')){
+        endTime = new Date();
+        let click_difference=endTime-startTime;
+        $result.textContent=`${click_difference}ms`
+        record.push(click_difference);
+        const $average=document.createElement("div");
+        let list=record.reduce((acc,cur)=>
+            acc+cur)/record.length;
+        $average.textContent=`현재 ${click_difference}ms 평균 ${list.toFixed(2)} ms`;
+        $result.appendChild($average);
+        startTime=null;
+        endTime=null;
+        $screen.classList.remove('now');
+        $screen.classList.add('waiting');
+        $screen.textContent="클릭해서 시작하세요";
+
+
+
+
+    }
+
+
+  })
+</script>
+</body>
+</html>

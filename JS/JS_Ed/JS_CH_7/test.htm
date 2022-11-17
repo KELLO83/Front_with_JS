@@ -1,0 +1,139 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>가위바위보</title>
+  <style>
+    #computer {
+      width: 142px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="computer"></div>
+<div>
+  <button id="scissors" class="btn">가위</button>
+  <button id="rock" class="btn">바위</button>
+  <button id="paper" class="btn">보</button>
+</div>
+<div id="score">0</div>
+<script>
+    const $computer = document.querySelector('#computer');
+    const $score = document.querySelector('#score');
+    const $rock = document.querySelector('#rock');
+    const $scissors = document.querySelector('#scissors');
+    const $paper = document.querySelector('#paper');
+    const IMG_URL = './rsp.png';
+    $computer.style.backgroundSize = 'auto 200px'; // height 동일
+    // $computer.style.background = `url(${IMG_URL}) 0 0`;//background 속성은 url 주소 ) x 좌표 y 좌표로 구성
+    // $computer.style.background=`url(${IMG_URL}) -220px 0`;
+    // $computer.style.background=`url(${IMG_URL}) -440px 0`; //좌표값 수치가들어가면 px를 적어줘야한다
+    
+
+    // const scissorsX='0';
+    // const rockX='-220px';
+    // const paperX='-440px'; 객체로 한번에 표현하자..
+
+    //이미지 좌표값들을 객체로 모았다..
+    const rxpX={
+        scissors:'0',
+        rock:'-220px',
+        paper:'-440px',
+
+    };
+    // 이미지를 바꾸는 함수..
+    let computerchoice = 'scissors';
+    const chagecomputerhand=()=>{
+        if( computerchoice === 'rock'){
+            computerchoice = 'scissors';
+        }
+        else if (computerchoice==='scissors'){
+            computerchoice = 'paper';
+        }
+        else if (computerchoice === 'paper'){
+            computerchoice = 'rock';
+        }
+    $computer.style.background = `url(${IMG_URL}) ${rxpX[computerchoice]} 0`;
+    $computer.style.backgroundSize = 'auto 200px';
+    }
+
+    let intevald=setInterval(chagecomputerhand,50); //매 50/1초 (1000초->1초)마다 함수가 실행된다
+
+    let clickable = true; //플래그변수
+
+    let computer_accumulate_score=0;
+    let user_accumulate_score=0;
+    const clickButton = () => {
+
+        const scoreTable = { //가위 바위 보 에 따른 숫자 변환표
+            rock: 0,
+            scissors: 1,
+            paper: -1,
+        };
+
+        if (clickable) { //true일시
+            clearInterval(intevald); //clear
+            clickable = false; // false 이므로 if (clickable ) 중북작동 제어
+
+            const myChoice = event.target.textContent === '바위'? 'rock'
+                : event.target.textContent === '가위' ? 'scissors'
+                    : 'paper';
+
+            const myScore = scoreTable[myChoice];
+            const computerScore = scoreTable[computerchoice];
+            const diff = myScore - computerScore;
+            let message;
+            let score=0;
+
+
+            if ([2, -1].includes(diff)) {
+                score+=1;
+                message = '승리';
+                user_accumulate_score+=1;
+                computer_accumulate_score-=1;
+
+            } else if ([-2, 1].includes(diff)) {
+                score -=1;
+                message = '패패';
+                computer_accumulate_score+=1;
+                user_accumulate_score-=1;
+            } else {
+
+                message = '무승부';
+            }
+            $score.textContent=`${message}  총: ${score}점`
+
+            if( user_accumulate_score>=3 || computer_accumulate_score>=3){
+                let who_win;
+                if (user_accumulate_score>computer_accumulate_score){
+                    who_win='YOU win';
+                }
+                else{
+                    who_win='computer win';
+                }
+                const $score_alter=document.createElement("div");
+                $score_alter.textContent = `${who_win} ${user_accumulate_score} : ${computer_accumulate_score}`;
+                $score.appendChild($score_alter);
+                clearInterval(chagecomputerhand);
+                return 0;
+            }
+
+            setTimeout(() => {
+                clickable = true;
+                intevald = setInterval(chagecomputerhand, 50);
+            }, 1000)
+        }
+    };
+
+
+
+
+    $rock.addEventListener('click',clickButton);
+    $scissors.addEventListener('click',clickButton);
+    $paper.addEventListener('click',clickButton);
+
+
+</script>
+</body>
+</html>
