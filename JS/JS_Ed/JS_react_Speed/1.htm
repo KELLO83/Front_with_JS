@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응속도 측정하기</title>
+    <style>
+         #screen {width: 300px ;height : 200px ;text-align :center ;user-select : nons;}
+         #screen.waiting {background-color: skyblue;} 
+         #screen.ready {background-color: red;}
+         #screen.now{background-color: green;}
+    </style>
+</head>
+<body>
+    <div id="screen" class="waiting">클릭해서 시작하세요</div>
+    <div id="result"></div>
+    <script>
+        const $screen = document.querySelector("#screen");
+        const $result = document.querySelector("#result");
+        let start_time;
+        let end_time;
+        let diff_time;
+        let attempt = 0;
+        let user_record=new Array();
+
+
+        $screen.addEventListener('click',()=>{
+            if ($screen.classList.contains('waiting')){
+                console.log("wating")
+                $screen.classList.remove('waiting'); // waiting class 를 일단지우고
+                $screen.classList.add('ready'); // ready class를 추가시킨다.
+                $screen.textContent = '초록색이되면 클릭하세요';
+                start_time = Date.now();
+                Testing_start_time = new Date();
+                console.log("Testing_start_time",Testing_start_time);
+
+                setTimeout(()=>{ // 범위 2000~3000 후 작동..
+                  $screen.classList.remove('ready');
+                  $screen.classList.add("now");
+                },Math.floor(Math.random()*2000+1000))
+
+            }
+            else if ($screen.classList.contains("ready")){
+                $screen.addEventListener('click',()=>{
+                    $screen.textContent = "너무성급하게  클릭";
+                    $screen.classList.remove('ready');
+                    $screen.classList.add("waiting");
+                    $screen.textContent = "초록색이 되면 클릭하세요";
+                })
+
+            }
+            else if ($screen.classList.contains("now")){
+                attempt += 1;
+                end_time = Date.now();
+                Testing_end_time =  new Date();
+                console.log("Testing_END_TIME",Testing_end_time);
+                console.log("Testing 격차",Testing_end_time - Testing_start_time);
+
+                diff_time = end_time - start_time;
+                user_record.push(diff_time);
+                console.log(user_record);
+                let total = user_record.reduce((acc,current)=>{return acc+current})
+                console.log("rduce 결과",total);
+                $result.textContent = ` 소요시간 ${diff_time}ms 평균시간 ${total/user_record.length}ms 시도횟수 ${attempt}`;
+                $screen.classList.remove('now');
+                $screen.classList.add("waiting");
+                $screen.textContent = "클릭해서 시작하세요";
+                start_time = null;
+                end_time  = null;
+                
+
+
+            }
+        });
+
+        
+    </script>
+    
+</body>
+</html>
